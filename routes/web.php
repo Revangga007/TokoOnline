@@ -11,6 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(
+    ['prefix' => 'admin', 'namespace' => 'Admin'],
+    function () {
+        Route::get('home', 'DashboardController')->name('home');
+        Route::resource('categories', 'CategoryController');
+    }
+);
